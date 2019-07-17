@@ -40,7 +40,7 @@
 				$hashed = hash('sha512', $salted);
 
 				$sql = "UPDATE ulogin SET password='".$hashed."' WHERE uname='".$user."';";
-				$result = $conn->query($sql);
+				$result = $conn->query($sql) or die(mysqli_error($conn));
 
         		$_SESSION['msg'] = "Your Password has been changed successfully.";
         		header('location:myAccount.php');
@@ -62,7 +62,7 @@
 					</div>
 					<div class="card fat">
 						<div class="card-body">
-							<form action="../admin/loginAdmin.php" method="POST">
+							<form action="resetPassPro.php" method="POST">
 								<h4 class="card-title">Reset Password</h4>
 									<input class="form-control" type="password" name="pass" placeholder="Enter Password" required/><br>
 									<input class="form-control" type="password" name="conPass" placeholder="Enter New Password Again" required/><br><br>

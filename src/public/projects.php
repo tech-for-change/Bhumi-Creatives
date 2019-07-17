@@ -5,6 +5,7 @@
 <html>
 <head>
 	<title>Projects | Bhumi</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="../../assets/img/siteicon.png">
 	<link rel="stylesheet" type="text/css" href="../../assets/css/gen/projects.css">
@@ -13,25 +14,34 @@
 	<link rel="stylesheet" type="text/css" href="../../assets/css/gen/styles.css">
 	<link rel="stylesheet" type="text/css" href="../../lib/buttons/gradient.css">
 	<link rel="stylesheet" type="text/css" href="../../lib/font-awesome/4.7.0/css/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="../../lib/css/luxbar.min.css">
+<link rel="stylesheet" type="text/css" href="../../lib/css/w3.css">
+<link rel="stylesheet" type="text/css" href="../../lib/font-awesome/4.7.0/css/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="../../lib/buttons/material-circle.css">
+<link rel="stylesheet" type="text/css" href="../../assets/css/buttons.css">
+
 
 </head>
 
 <body>
 	<!-- Too Lazy for Padding -->
 	<?php
+	session_start();
 		include 'header.php';
 		include '..//common//connection.php';
 
-    session_start();
+    
 		if(isset($_SESSION['user']))
 			$user = $_SESSION['user'];
 		else
 			header("Location:../index.php");
+		
+		echo "<div class='container-fluid'>";
 		$sql = "SELECT * FROM project;";
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0){
 			$id=0;
-			echo "<table><tr>";
+			
 			while ($row = $result->fetch_assoc()){
 				$title = $row["title"];
 				$url = $row["image"];
@@ -68,6 +78,8 @@
 		else{
 			echo "<h3>No Projects to Display.</h3>";
 		}
+
+		echo "</div>";
 	?>
 	<script type='text/javascript'>
 		function redir() {
@@ -76,6 +88,7 @@
 	</script>
 	<!-- Call footer.php for Footer Bar-->
 	<!--Footer to be added-->
+	
 
 </body>
 </html>

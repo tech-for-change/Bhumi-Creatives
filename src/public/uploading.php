@@ -5,19 +5,22 @@
 <html>
 <head>
 	<title>Upload</title>
-	<link rel="icon" type="image/png" href="../../assets/img/siteicon.png" />
-	<link rel="stylesheet" type="text/css" href="../../assets/css/gen/styles.css">
-	<link rel="stylesheet" type="text/css" href="../../assets/css/buttons.css">
+
 
 	<script src="../common/cities.js"></script>
     <script src="../common/programe.js"></script>
+
 </head>
 
-<body>
+<body>		
+	
+	<?php
 
+	include 'header.php';
+	?>
   <?php
-			include 'header.php';
 			session_start();
+
 
 			if (isset($_SESSION['user']))
 					$user = $_SESSION['user'];
@@ -149,122 +152,76 @@
 			}
 		?>
 
-		<div class="forms w3-border w3-round-large">
-        <div class="w3-container w3-black ">
-            <h2>Upload Form</h2>
-        </div>
 
-        <form class="w3-container w3-mobile" method='post' action='uploading.php' enctype="multipart/form-data">
-        <p>
-            <label>Export Image</label>
-            <input class="w3-input" type="file" name='file' required />
-            <div style="color:red;">* File size must be < 5MB </div>
-						<div>Allowed formats are JPEG, JPG, PNG and GIF</div>
-        </p><br>
 
-        <p>
-            <label>Project/Design Name</label>
-            <input class="w3-input" type="text" name='name' required />
-        </p><br>
+		<!--form -->
+		<div class="container-fluid">
+		<div class="row justify-content-md-center">
+		<div class="col-md-8 border p-4">
+		<form method='post' action='uploading.php' enctype="multipart/form-data">
+		<div class="row justify-content-md-center">
+		<h2><strong>Upload Form</strong></h2>
+		</div>
 
-        <p>
-            <label>Description</label>
-            <input class="w3-input" type="text" name='descri' maxlength="250" required />
-            (Maximum 250 Characters allowed)
-        </p><br>
+		<div class="form-group">
+   		 <label for="file">Export Image</label>
+   		 <input type="file" class="form-control-file" id="file" name='file' required>
+			<div style="color:red;">* File size must be < 5MB </div>
+			<div>Allowed formats are JPEG, JPG, PNG and GIF</div>
+ 		 </div>
+	  
+		<div class="form-group">
+			<label>Project/Design Name</label>
+		  <input class="form-control" type="text" name='name' required>
+		</div>
+		<div class="form-group">
+			<label>Description</label>
+		  <input class="form-control" type="text" name='descri' maxlength="250" required>
+		  <div>(Maximum 250 Characters allowed)</div>
+		</div>
 
-        <!--<p>
-            <label>City</label>
-								Popular Cities within India
-                <select class="w3-input" name="city">
-	                <option value="Agra">Agra</option>
-	                <option value="Ahmedabad">Ahmedabad</option>
-	                <option value="Alappuzha">Alappuzha</option>
-	                <option value="Amritsar">Amritsar</option>
-	                <option value="Bangalore">Bangalore</option>
-	                <option value="Bhavnagar">Bhavnagar</option>
-	                <option value="Bhopal">Bhopal</option>
-	                <option value="Bhubaneshwar">Bhubaneshwar</option>
-	                <option value="Chandigarh">Chandigarh</option>
-	                <option value="Chennai">Chennai</option>
-	                <option value="Chittaurgarh">Chittaurgarh</option>
-	                <option value="Coimbatore">Coimbatore</option>
-	                <option value="Cuttack">Cuttack</option>
-	                <option value="Dehradun">Dehradun</option>
-	                <option value="Delhi">Delhi</option>
-	                <option value="Gangtok">Gangtok</option>
-	                <option value="Guwahati">Guwahati</option>
-	                <option value="Hyderabad">Hyderabad</option>
-	                <option value="Jaipur">Jaipur</option>
-	                <option value="Jamshedpur">Jamshedpur</option>
-	                <option value="Kanpur">Kanpur</option>
-	                <option value="Kanyakumari">Kanyakumari</option>
-	                <option value="Kolkata">Kolkata</option>
-	                <option value="Lucknow">Lucknow</option>
-	                <option value="Madurai">Madurai</option>
-	                <option value="Mumbai">Mumbai</option>
-	                <option value="Mysore">Mysore</option>
-	                <option value="Nagpur">Nagpur</option>
-	                <option value="Noida">Noida</option>
-	                <option value="Ooty">Ooty</option>
-	                <option value="Panaji">Panaji</option>
-	                <option value="Patna">Patna</option>
-	                <option value="Pondicherry">Pondicherry</option>
-	                <option value="Portblair">Portblair</option>
-	                <option value="Pune">Pune</option>
-	                <option value="Rajkot">Rajkot</option>
-	                <option value="Rameswaram">Rameswaram</option>
-	                <option value="Ranchi">Ranchi</option>
-	                <option value="Secunderabad">Secunderabad</option>
-	                <option value="Shimla">Shimla</option>
-	                <option value="Surat">Surat</option>
-	                <option value="Thanjavur">Thanjavur</option>
-	                <option value="Thiruchchirapalli">Thiruchchirapalli</option>
-	                <option value="Tirumala">Tirumala</option>
-	                <option value="Udaipur">Udaipur</option>
-	                <option value="Vijayawada">Vijayawada</option>
-	                <option value="Visakhapatnam">Visakhapatnam</option>
-                </select>
-        </p><br>-->
+		<div class="form-group">
+		<label>State </label>
+		<select onchange="print_city('state', this.selectedIndex);" id="sts" name="state" class="form-control" required></select>
+		</div>
 
-				<p>
-					<label>State </label>
-					<select onchange="print_city('state', this.selectedIndex);" id="sts" name ="state" class="w3-input" required></select>
-				</p><br>
+		<div class="form-group">
+		<label>City</label>
+		<select id ="state" class="form-control " name="city" required></select>
+		<script language="javascript">print_state("sts");</script>
+		</div> 
 
-				<p>
-					<label>City</label>
-					<select id ="state" class="form-control w3-input" name="city" required></select>
-					<script language="javascript">print_state("sts");</script>
+		<div class="form-group">
+		<label>Programme</label>
+		<select onchange="print_project('programme', this.selectedIndex);" id="pro" name ="programme" class="form-control" required></select>
+		</div> 
+		
+		<div class="form-group">
+		<label>Project</label>
+		<select id ="programme" class="form-control " name="project" required></select>
+		<script language="javascript">print_programme("pro");</script>
+		</div> 
 
-				</p><br>
+		<div class="form-group">
+		<label>Tags</label>
+        <input class="form-control" type="text" name='tag' required />
+        <div> (Separate different tags using commas)</div>
+		</div> 
 
-				<p>
-					<label>Programme</label>
-					<select onchange="print_project('programme', this.selectedIndex);" id="pro" name ="programme" class="form-control w3-input" required></select>
-				</p><br>
+		<div class="form-group">
+		<label>Source File</label>
+        <input class="w3-input" type="file" name='source' required />
+		<div style="color:red;">* File size must be < 50MB </div>
+		<div>Allowed formats are ZIP,RAR,TAR and PSD</div>
+		</div>
+		
+		<button type="submit" class="btn btn-primary">Upload</button>
+		</form>
+		</div>
+		</div>
+		</div>
+		<!--form -->
 
-				<p>
-					<label>Project</label>
-					<select id ="programme" class="form-control w3-input" name="project" required></select>
-					<script language="javascript">print_programme("pro");</script>
-				</p><br>
-        <p>
-            <label>Tags</label>
-            <input class="w3-input" type="text" name='tag' required />
-            (Separate different tags using commas)
-        </p><br>
-        <p>
-            <label>Source File</label>
-            <input class="w3-input" type="file" name='source' required />
-						<div style="color:red;">* File size must be < 50MB </div>
-						<div>Allowed formats are ZIP,RAR,TAR and PSD</div>
-        </p><br>
-        <p>
-            <input class="large blue button" type="submit" name="submit" value="Upload">
-        </p><br>
-        </form>
-    </div>
 			<!-- Call footer.php for Footer Bar-->
     <?php include "..//common//footer.php"; ?>
 

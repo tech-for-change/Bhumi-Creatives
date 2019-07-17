@@ -34,6 +34,8 @@
 				echo "<br><b>User: </b>".ucfirst($row['uname'])."<br><b>Dated on: </b>".$dates."<br><b>Message</b>:  ".ucfirst($message)."<br>
 				<b>Status: </b>".ucfirst($row['status'])."<br>";
 			}
+			$sql = "UPDATE notification SET status='read' WHERE uname='".$user."';";
+			$result1 = $conn->query($sql);
 		}
 		else{
 			echo "<h3>All Notifications Read.</h3>";
